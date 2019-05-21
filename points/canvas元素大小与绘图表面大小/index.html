@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas1"></canvas>
+  <canvas id="canvas2"></canvas>
+  <script>
+    var canvas1 = document.getElementById('canvas1');
+    var ctx1 = canvas1.getContext('2d');
+    var canvas2 = document.getElementById('canvas2');
+    var ctx2 = canvas2.getContext('2d');
+
+    canvas1.width = 600;
+    canvas1.height = 300;
+    canvas2.style.width = '600px';
+    canvas2.style.heigth = '300px';
+    [ctx1, ctx2].forEach(ctx => {
+      ctx.font = '38px Arial'
+      ctx.strokeStyle = 'blue'
+      ctx.fillText('hello', 10, 50)
+      ctx.strokeText('hello', 10, 50)
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div class="pixel-ratio"></div>
+  <canvas id="canvas"></canvas>
+  <canvas id="canvas1"></canvas>
+  <script>
+    let intervalID = null;
+    let pixelRatioBox = document.querySelector(".pixel-ratio");
+    let mqString = `(resolution: ${window.devicePixelRatio}dppx)`;
+
+    const updatePixelRatio = () => {
+      let pr = window.devicePixelRatio;
+      let prString = (pr * 100).toFixed(0);
+      pixelRatioBox.innerText = `${prString}% (${pr.toFixed(2)})`;
+    }
+
+    updatePixelRatio();
+
+    matchMedia(mqString).addEventListener("change", updatePixelRatio);
+  </script>
+  <script>
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    var canvas1 = document.getElementById('canvas1');
+    var ctx1 = canvas1.getContext('2d');
+
+    var canvasSize = 500;
+
+    //overriding default window.devicePixelRatio, changing it to 2 on retina display will make canvas clear
+    window.devicePixelRatio = 2;
+
+    canvas.width = canvas.height = canvasSize;
+
+    ctx.fillStyle = "#bada55";
+    ctx.fillRect(0, 0, 500, 500);
+    ctx.fillStyle = "black";
+    ctx.font = '88px Arial';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    var x = canvasSize / 2;
+    var y = canvasSize / 2;
+
+    var textString = "I love MDN";
+    ctx.fillText(textString, x, y);
+
+    //--------
+
+    // window.devicePixelRatio = 2;
+
+    // canvas1.width = canvas1.height = canvasSize;
+
+    // ctx1.fillStyle = "#bada55";
+    // ctx1.fillRect(10, 10, 300, 300);
+    // ctx1.fillStyle = "#ffffff";
+    // ctx1.font = '18px Arial';
+    // ctx1.textAlign = 'center';
+    // ctx1.textBaseline = 'middle';
+
+    // var x = canvasSize / 2;
+    // var y = canvasSize / 2;
+
+    // var textString = "I love MDN";
+    // ctx1.fillText(textString, x, y);
+  </script>
+</body>
+
+</html>
