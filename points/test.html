@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+  <canvas id="canvas1"></canvas>
+  <script>
+    /*
+    * devicePixelRatio 的作用其实类似于是否启用缩放，
+    * eg：一个 200*200px的位图画到 devicePixelRatio = 2 的屏幕上，
+    * 其实它需要 400*400像素的颜色信息才能画上，所以剩下的要进行推测（放大2倍）
+    *
+    * 位图的缩放（推测）会导致模糊
+    *
+    * 所以最好的办法是直接绘制 400*400 的像素信息
+    *
+    */
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+
+    var canvasSize = 200;
+
+    const devicePixelRatio = window.devicePixelRatio;
+    console.log('devicePixelRatio', devicePixelRatio)
+
+    canvas.style.width = canvas.style.height = `${canvasSize}px`
+    canvas.width = canvas.height = canvasSize * devicePixelRatio;
+
+    ctx.fillStyle = "#bada55";
+    ctx.fillRect(0, 0, canvasSize * devicePixelRatio, canvasSize * devicePixelRatio);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = `${18 * devicePixelRatio}px Arial`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    var x = 400 / 2;
+    var y = 400 / 2;
+
+    var textString = "I love MDN";
+    ctx.fillText(textString, x, y);
+  </script>
+  <script>
+    (function (params) {
+      var canvas1 = document.getElementById('canvas1');
+      var ctx1 = canvas1.getContext('2d');
+
+      var canvasSize = 200;
+
+      //overriding default window.devicePixelRatio, changing it to 2 on retina display will make canvas clear
+      const devicePixelRatio = window.devicePixelRatio;
+      console.log('devicePixelRatio', devicePixelRatio)
+
+      canvas1.style.width = canvas1.style.height = `${canvasSize}px`
+      canvas1.width = canvas1.height = canvasSize
+
+      ctx1.fillStyle = "#bada55";
+      ctx1.fillRect(0, 0, 200, 200);
+      ctx1.fillStyle = "#ffffff";
+      ctx1.font = '18px Arial';
+      ctx1.textAlign = 'center';
+      ctx1.textBaseline = 'middle';
+
+      var x = canvasSize / 2;
+      var y = canvasSize / 2;
+
+      var textString = "I love MDN";
+      ctx1.fillText(textString, x, y);
+    })()
+    </script>
+</body>
+
+</html>

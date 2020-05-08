@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+<script>
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  ctx.strokeStyle = 'black'
+  // 并不是真的1像素  绘制在像素边界的会被扩展为 2 像素
+  ctx.lineWidth = 1
+  ctx.moveTo(0, 1)
+  ctx.lineTo(100, 1)
+  ctx.stroke()
+
+  ctx.beginPath()
+  ctx.strokeStyle = 'red'
+  // 绘制在像素中间的是真的 1 像素
+  ctx.lineWidth = 1
+  ctx.moveTo(0, 2.5)
+  ctx.lineTo(100, 2.5)
+  ctx.stroke()
+</script>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+<script>
+  var canvas = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+  ctx.rect(1, 1, 50, 50)
+  // beginPath会清空上面的子路径，所以上一个 rect 不会被画出来
+  ctx.beginPath()
+  ctx.rect(60, 60, 50, 50)
+
+  ctx.stroke()
+</script>
+</html>
